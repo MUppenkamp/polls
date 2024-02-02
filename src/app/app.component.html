@@ -1,20 +1,33 @@
 <header class="bg-white is-screen bs-20">
     Header
 </header>
+
 <main class="pli-40 plb-6">
-    <h1 class="mbe-10">Mit den Winterhärtezonen von 1a bis 13b lässt sich herausfinden ...?</h1>
-    <div class="flex flex-col">
+    <h1 class="mbe-10">{{ poll.question }}</h1>
+    <p>@if (poll.description?.length) { {{ poll.description }} } </p>
+    <div>
+        @for (answer of poll.answers; track answer; let index = $index) {
+            <div class="flex pbe-4">
+                <span class="flex items-center pie-2.5">{{ convertToAlphabet(index).toLowerCase() }}.</span>
+                <button
+                    type="button"
+                    class="bg-{{ answer.color }} grow"
+                    (click)="vote(index)"
+                    [ngClass]="{
+                        'bg-hotpink': votedFor === index
+                    }"
+                >
+                    {{ answer.text }}
+                </button>
+            </div>
+        }
+    </div>
+    <div class="flex justify-center mbs-4">
         <button
-            class="border-tropical-indigo hover:bg-tropical-indigo/20">
-            ... welches Frostschutzmittel für ein Fahrzeug geeignet ist
-        </button>
-        <button
-            class="border-violet hover:bg-violet/20">
-            ...wie der Heizkessel einer Gasheizung eingestellt werden muss
-        </button>
-        <button
-            class="border-lavender-pink hover:bg-lavender-pink/20">
-            ... welche Tiefsttemperatur Pflanzen ohne Schäden überstehen können
+            type="button"
+            class=""
+        >
+            Ergebnis anzeigen
         </button>
     </div>
 </main>
