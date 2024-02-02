@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-mint-cream block text-lg;
+  @apply bg-snow block text-lg min-is-body;
 }
 
 h1 {
@@ -23,5 +23,5 @@ h4 {
 }
 
 button {
-  @apply border-2 rounded-xl plb-3 pli-4 mbe-4;
+  @apply border-2 rounded-xl plb-2 pli-4 transition-colors duration-200;
 }
